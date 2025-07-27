@@ -12,6 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["var(--font-geist)", "ui-sans-serif", "system-ui"],
+      },
       animation: {
         "fade-out": "1s fadeOut 3s ease-out forwards",
       },

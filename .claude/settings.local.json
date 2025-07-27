@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(taskkill:*)",
+      "Bash(npx next dev:*)",
+      "Bash(netsh:*)",
+      "Bash(rm:*)",
+      "Bash(powershell:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)"
+    ],
+    "deny": []
+  }
+}

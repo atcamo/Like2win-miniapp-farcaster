@@ -1,8 +1,15 @@
-import "./theme.css";
 import "@coinbase/onchainkit/styles.css";
-import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./theme.css";
+import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
 import { Providers } from "./providers";
+
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -41,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-background">
+    <html lang="en" className={geist.variable}>
+      <body className="bg-background font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>
