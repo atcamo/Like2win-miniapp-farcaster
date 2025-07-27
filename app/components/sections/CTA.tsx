@@ -96,7 +96,7 @@ export function CTA() {
 
             {/* Quick Actions */}
             <div className="space-y-4 mb-8">
-              {quickActions.map((action, index) => (
+              {quickActions.map((action) => (
                 <a
                   key={action.title}
                   href={action.href}
@@ -152,7 +152,7 @@ export function CTA() {
               {isConnected && address && (
                 <div className="mt-4 p-3 bg-green-500/20 rounded-lg border border-green-400/30">
                   <p className="text-green-200 text-sm text-center">
-                    ✅ Wallet connected! You'll receive notifications about raffle results.
+                    ✅ Wallet connected! You&apos;ll receive notifications about raffle results.
                   </p>
                 </div>
               )}
@@ -203,7 +203,7 @@ export function CTA() {
                   ) : (
                     <div className="p-3 bg-green-500/20 rounded-lg border border-green-400/30">
                       <p className="text-green-200 text-sm">
-                        ✅ Notifications enabled! We'll keep you updated.
+                        ✅ Notifications enabled! We&apos;ll keep you updated.
                       </p>
                     </div>
                   )}

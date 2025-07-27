@@ -110,7 +110,7 @@ function DefaultErrorFallback({ error, resetError }: { error: Error; resetError:
 export function useErrorHandler() {
   const [error, setError] = React.useState<Error | null>(null);
 
-  const handleError = React.useCallback((error: unknown) => {
+  const handleErrorCallback = React.useCallback((error: unknown) => {
     const appError = handleError(error);
     setError(appError);
     logError(appError);
@@ -120,7 +120,7 @@ export function useErrorHandler() {
     setError(null);
   }, []);
 
-  return { error, handleError, clearError };
+  return { error, handleError: handleErrorCallback, clearError };
 }
 
 // Simple error display component

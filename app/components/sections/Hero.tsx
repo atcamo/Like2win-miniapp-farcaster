@@ -7,7 +7,6 @@ import { FallingLikesAnimation } from "../FallingLikesAnimation";
 import { PerformanceMonitor } from "../PerformanceMonitor";
 
 export function Hero() {
-  const [currentStat, setCurrentStat] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   const stats = [
@@ -18,11 +17,7 @@ export function Hero() {
 
   useEffect(() => {
     setIsVisible(true);
-    const interval = setInterval(() => {
-      setCurrentStat((prev) => (prev + 1) % stats.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [stats.length]);
+  }, []);
 
   const scrollToDemo = () => {
     document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
@@ -81,37 +76,22 @@ export function Hero() {
             </Button>
           </div>
 
-          {/* Animated Stats */}
+          {/* Static Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {stats.map((stat, index) => {
+            {stats.map((stat) => {
               const Icon = stat.icon;
-              const isActive = currentStat === index;
               return (
                 <div
                   key={stat.label}
-                  className={`
-                    p-6 rounded-2xl backdrop-blur-lg transition-all duration-500
-                    ${isActive 
-                      ? 'bg-white/90 dark:bg-gray-800/90 shadow-2xl scale-105 border-2 border-amber-300 dark:border-amber-500' 
-                      : 'bg-white/60 dark:bg-gray-800/60 shadow-lg hover:shadow-xl'
-                    }
-                  `}
+                  className="p-6 rounded-2xl backdrop-blur-lg bg-white/90 dark:bg-gray-800/90 shadow-2xl border-2 border-amber-300 dark:border-amber-500 hover:shadow-3xl transition-shadow duration-300"
                 >
-                  <div className={`mb-3 transition-all duration-500 ${isActive ? 'scale-110' : ''}`}>
+                  <div className="mb-3">
                     <Icon 
                       size="lg" 
-                      className={`mx-auto transition-colors duration-500 ${
-                        isActive 
-                          ? 'text-amber-600 dark:text-amber-400' 
-                          : 'text-gray-500 dark:text-gray-400'
-                      }`} 
+                      className="mx-auto text-amber-600 dark:text-amber-400" 
                     />
                   </div>
-                  <div className={`text-3xl font-bold transition-all duration-500 ${
-                    isActive 
-                      ? 'text-amber-600 dark:text-amber-400 scale-110' 
-                      : 'text-gray-900 dark:text-gray-100'
-                  }`}>
+                  <div className="text-3xl font-bold text-amber-600 dark:text-amber-400">
                     {stat.value}
                   </div>
                   <div className="text-gray-600 dark:text-gray-400 font-medium">

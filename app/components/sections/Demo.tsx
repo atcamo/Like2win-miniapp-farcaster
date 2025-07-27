@@ -1,12 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Modal } from "../ui/Modal";
-import { HeartIcon, TrophyIcon, DiceIcon, MoneyIcon } from "../icons";
+import { LoadingButton } from "../ui/Loading";
+import { HeartIcon, TrophyIcon, DiceIcon } from "../icons";
+import { TransactionExample } from "../transaction/TransactionExample";
+import { useAccount } from "wagmi";
 
 export function Demo() {
+  const { isConnected } = useAccount();
   const [isSimulating, setIsSimulating] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [tickets, setTickets] = useState(0);
@@ -143,7 +147,7 @@ export function Demo() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Interactive Demo */}
           <div className="space-y-6">
             <Card title="Interactive Demo" gradient>
@@ -201,15 +205,16 @@ export function Demo() {
 
                 {/* Action Buttons */}
                 <div className="flex space-x-4">
-                  <Button
+                  <LoadingButton
                     variant="gradient"
                     onClick={startSimulation}
-                    disabled={isSimulating || tickets === 0}
-                    loading={isSimulating}
-                    className="flex-1"
+                    disabled={tickets === 0}
+                    isLoading={isSimulating}
+                    loadingText="Simulating..."
+                    className="flex-1 bg-gradient-to-r from-amber-600 to-yellow-600 text-white hover:from-amber-700 hover:to-yellow-700 transition-all duration-200"
                   >
-                    {isSimulating ? "Simulating..." : "Simulate Raffle"}
-                  </Button>
+                    Simulate Raffle
+                  </LoadingButton>
                   <Button
                     variant="outline"
                     onClick={resetDemo}
@@ -288,6 +293,38 @@ export function Demo() {
               </div>
             </Card>
           </div>
+
+          {/* Web3 Integration Demo */}
+          <div className="space-y-6">
+            <Card title="Web3 Integration" gradient>
+              <div className="space-y-4">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Test Web3 functionality with MiniKit and Base network integration.
+                </p>
+                {isConnected ? (
+                  <div className="space-y-4">
+                    <div className="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg">
+                      <p className="text-green-700 dark:text-green-300 text-sm">
+                        ✅ Wallet connected! You can now test transactions.
+                      </p>
+                    </div>
+                    <TransactionExample />
+                  </div>
+                ) : (
+                  <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                      Connect your wallet to test Web3 functionality:
+                    </p>
+                    <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
+                      <li>• Test transactions on Base network</li>
+                      <li>• Experience MiniKit integration</li>
+                      <li>• Preview future raffle features</li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </Card>
+          </div>
         </div>
 
         {/* Result Modal */}
@@ -298,7 +335,7 @@ export function Demo() {
           size="md"
         >
           <div className="text-center space-y-6">
-            {simulationResult?.position <= 3 ? (
+            {simulationResult && simulationResult.position <= 3 ? (
               <>
                 <div className="w-20 h-20 mx-auto bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
                   <TrophyIcon size="xl" className="text-white" />
@@ -308,10 +345,10 @@ export function Demo() {
                     🎉 Congratulations!
                   </h3>
                   <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-                    You finished in {simulationResult.position === 1 ? '1st' : simulationResult.position === 2 ? '2nd' : '3rd'} place!
+                    You finished in {simulationResult?.position === 1 ? '1st' : simulationResult?.position === 2 ? '2nd' : '3rd'} place!
                   </p>
                   <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
-                    {simulationResult.prize.toLocaleString()} $DEGEN
+                    {simulationResult?.prize.toLocaleString()} $DEGEN
                   </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     Your prize has been distributed to your wallet
@@ -328,7 +365,7 @@ export function Demo() {
                     Better luck next time!
                   </h3>
                   <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-                    You didn't win this time, but keep participating!
+                    You didn&apos;t win this time, but keep participating!
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     Next raffle: {nextRaffleDate}

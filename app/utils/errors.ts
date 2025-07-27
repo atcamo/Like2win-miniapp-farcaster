@@ -44,7 +44,7 @@ export function formatErrorMessage(error: AppError): string {
   }
 }
 
-export function logError(error: AppError, context?: Record<string, any>): void {
+export function logError(error: AppError, context?: Record<string, unknown>): void {
   const errorData = {
     name: error.name,
     message: error.message,

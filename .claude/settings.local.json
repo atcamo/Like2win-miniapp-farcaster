@@ -9,7 +9,18 @@
       "Bash(powershell:*)",
       "Bash(npm run build:*)",
       "Bash(npm run dev:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npm install:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(if exist \".next\" rmdir /s /q .next)",
+      "Bash(ls:*)",
+      "Bash(npx next lint:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": []
   }
