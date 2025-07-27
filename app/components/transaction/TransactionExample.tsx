@@ -20,7 +20,7 @@ const DONATION_CONTRACT = {
 } as const;
 
 export function TransactionExample() {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const [amount, setAmount] = useState("0.001");
   
   const {

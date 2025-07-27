@@ -22,7 +22,7 @@ export function PerformanceMonitor() {
         
         // Medir memoria si está disponible
         if ('memory' in performance) {
-          const memInfo = (performance as any).memory;
+          const memInfo = (performance as unknown as { memory: { usedJSHeapSize: number } }).memory;
           setMemory(Math.round(memInfo.usedJSHeapSize / 1024 / 1024));
         }
       }

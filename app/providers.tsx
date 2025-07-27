@@ -3,7 +3,7 @@
 import { type ReactNode } from "react";
 import { base } from "wagmi/chains";
 import { OnchainKitProvider } from "@coinbase/onchainkit";
-import { MiniKitProvider, useMiniKit } from "@coinbase/onchainkit/minikit";
+import { MiniKitProvider } from "@coinbase/onchainkit/minikit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { http, createConfig } from "wagmi";
@@ -48,7 +48,7 @@ export function Providers(props: { children: ReactNode }) {
             },
           }}
         >
-          <MiniKitProvider>
+          <MiniKitProvider chain={base}>
             {props.children}
           </MiniKitProvider>
         </OnchainKitProvider>

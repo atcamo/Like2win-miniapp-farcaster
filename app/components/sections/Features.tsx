@@ -90,7 +90,7 @@ export function Features() {
 
         {/* Core Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {coreFeatures.map((feature, index) => (
+          {coreFeatures.map((feature) => (
             <Card
               key={feature.title}
               icon={feature.icon}
@@ -120,7 +120,7 @@ export function Features() {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {participationMethods.map((method, index) => (
+            {participationMethods.map((method) => (
               <div
                 key={method.title}
                 className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
@@ -162,7 +162,7 @@ export function Features() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {economicsBreakdown.map((prize, index) => (
+            {economicsBreakdown.map((prize) => (
               <div
                 key={prize.recipient}
                 className="text-center p-6 bg-white/80 dark:bg-gray-900/80 rounded-2xl backdrop-blur-sm"

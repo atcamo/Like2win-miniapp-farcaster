@@ -74,10 +74,10 @@ export interface BaseComponentProps {
   children?: React.ReactNode;
 }
 
-export interface LoadingState {
+export interface LoadingState<T = unknown> {
   isLoading: boolean;
   error?: string | null;
-  data?: any;
+  data?: T;
 }
 
 // Error types
@@ -114,13 +114,13 @@ export class WalletError extends AppError {
 }
 
 // API Response types
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: {
     message: string;
     code?: string;
-    details?: any;
+    details?: unknown;
   };
   meta?: {
     page?: number;
