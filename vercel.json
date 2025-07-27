@@ -72,8 +72,5 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false,
-  "env": {
-    "NEXT_PUBLIC_VERCEL_URL": "@vercel-url"
-  }
+  "trailingSlash": false
 }
