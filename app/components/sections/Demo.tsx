@@ -5,8 +5,11 @@ import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Modal } from "../ui/Modal";
 import { HeartIcon, TrophyIcon, DiceIcon, MoneyIcon } from "../icons";
+import { TransactionExample } from "../transaction/TransactionExample";
+import { useAccount } from "wagmi";
 
 export function Demo() {
+  const { isConnected } = useAccount();
   const [isSimulating, setIsSimulating] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [tickets, setTickets] = useState(0);
@@ -143,7 +146,7 @@ export function Demo() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Interactive Demo */}
           <div className="space-y-6">
             <Card title="Interactive Demo" gradient>
@@ -285,6 +288,38 @@ export function Demo() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </Card>
+          </div>
+
+          {/* Web3 Integration Demo */}
+          <div className="space-y-6">
+            <Card title="Web3 Integration" gradient>
+              <div className="space-y-4">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Test Web3 functionality with MiniKit and Base network integration.
+                </p>
+                {isConnected ? (
+                  <div className="space-y-4">
+                    <div className="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg">
+                      <p className="text-green-700 dark:text-green-300 text-sm">
+                        ✅ Wallet connected! You can now test transactions.
+                      </p>
+                    </div>
+                    <TransactionExample />
+                  </div>
+                ) : (
+                  <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                      Connect your wallet to test Web3 functionality:
+                    </p>
+                    <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
+                      <li>• Test transactions on Base network</li>
+                      <li>• Experience MiniKit integration</li>
+                      <li>• Preview future raffle features</li>
+                    </ul>
+                  </div>
+                )}
               </div>
             </Card>
           </div>

@@ -16,6 +16,7 @@ import {
   Avatar,
   EthBalance,
 } from "@coinbase/onchainkit/identity";
+import { MiniKitStatus } from "../minikit/MiniKitStatus";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,8 +56,9 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Wallet Connection */}
+          {/* MiniKit Status & Wallet Connection */}
           <div className="hidden md:flex items-center space-x-4">
+            <MiniKitStatus />
             <Wallet className="z-10">
               <ConnectWallet>
                 <Button variant="gradient" size="sm" className="shadow-lg hover:shadow-xl">
@@ -106,7 +108,8 @@ export function Header() {
                   {item.name}
                 </a>
               ))}
-              <div className="pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+              <div className="pt-4 border-t border-gray-200/50 dark:border-gray-700/50 space-y-3">
+                <MiniKitStatus />
                 <Wallet className="w-full">
                   <ConnectWallet>
                     <Button variant="gradient" size="sm" fullWidth className="shadow-lg">
