@@ -49,7 +49,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(ico|png|jpg|jpeg|gif|webp|svg|woff|woff2)$)",
+      "source": "/static/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
